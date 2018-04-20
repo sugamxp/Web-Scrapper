@@ -17,6 +17,9 @@ from django.conf.urls import url
 from django.contrib import admin
 from home import views
 urlpatterns = [
-    url(r'^$',views.index,name = 'index'),
-    url(r'^admin/', admin.site.urls),
+    url(r'^vocabs/', views.vocabs, name = 'vocabs'),
+    url(r'^index/',views.index,name = 'index'),
+    url(r'^$',views.intro,name = 'intro'),
+    url(r'^admin/', admin.site.urls,name = 'ad'),
+    url(r'^aboutus/',views.aboutus,name='aboutus'),
 ]

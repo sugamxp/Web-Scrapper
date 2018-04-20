@@ -1,4 +1,5 @@
-<!DOCTYPE html> {% load staticfiles %}
+<!DOCTYPE html>
+{% load staticfiles %}
 <html>
 
 <head>
@@ -6,33 +7,113 @@
   <title>WebScrapper</title>
   <link rel="stylesheet" href="{% static "css/mystyle.css" %}"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-</head>
+<link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Gaegu|Indie+Flower|Orbitron|Economica:400,700" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+
+    .jumbotron {
+      margin-top:10px;
+      background:#393E46;
+    }
+    .jumbotron h1{
+      color: white;
+      font-family: 'Do Hyeon', sans-serif;
+    }
+    .jumbotron p{
+      color: white;
+      font-family: 'Economica', sans-serif;
+      font-weight: 700;
+    }
+    img {
+	     width: 100%;
+    }
+    navbar {
+    -webkit-box-shadow: 0 8px 6px -6px #999;
+    -moz-box-shadow: 0 8px 6px -6px #999;
+    box-shadow: 0 8px 6px -6px #999;
+    }
+    .all{
+      text-align: center;
+    }
+
+
+  </style>
+  </head>
 
 <body>
-  <nav class="navbar navbar-light bg-light">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">
-    <img src="https://previews.123rf.com/images/pansasunavee/pansasunavee1510/pansasunavee151000032/46106949-freehand-sketch-illustration-of-spider-web-doodle-hand-drawn.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
     Web Scrapper
-  </a>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+   <span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item ">
+          <a class="nav-link" href="http://127.0.0.1:8000">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'vocabs' %}">Vocabulary</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'index' %}">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:8000/admin">Admin</a>
+        </li>
+      </ul>
+    </div>
+      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="https://github.com/sugamxp/Web-Scrapper"><i class="fa fa-github" aria-hidden="true" style="font-size:29px;"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
+            </li>
+        </ul>
+    </div>
+
   </nav>
-  <div class="container">
-    <div class="jumbotron">
-      <h1 class="display-4">Web Scrapper 1.0 !</h1>
-      <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      <hr class="my-4">
-      <p class="lead">
+
+    <div class="jumbotron  text-dark">
+      <h1 class="display-4"><i class="fa fa-money" aria-hidden="true"style="font-size:80px;"></i>  Get The Best Deal!!!</h1>
+      <p class="lead">Simply search for the product you need, and get realtime comparison of prices of products from Amazon and Flipkart.
       </p>
 
       <form method="POST">
         {{forms.as_p}} {% csrf_token %}
-        <input type="submit" class="btn btn-success" value="Scrap">
+        <input type="submit" class="btn btn-info btn-lg" value="Scrap">
       </form>
 
 
     </div>
+    {% if imgA %}
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <div class="thumbnail">
+            <img src="{{imgA.0}}" class="img-thumbnail">
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="thumbnail">
+            <img src="{{imgA.1}}" class="img-thumbnail">
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="thumbnail">
+            <img src="{{imgA.2}}" class="img-thumbnail">
+          </div>
+        </div>
 
+    </div>
   </div>
+  {% endif %}
+
 
   <div class="container">
     <div class="row">
@@ -52,14 +133,21 @@
 
             {% for acc in recordsA %}
             <tr>
-              <td>{{acc.name}}</td>
-              <td>{{acc.price}}</td>
+              <td>{{acc.0}}</td>
+              <td>{{acc.1}}</td>
             </tr>
             {% endfor %}
           </tbody>
         </table>
         {% else %}
-        <p>No record found</p>
+        </table>
+        <table class="table table-striped table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col align-center" class="all">No Result</th>
+            </tr>
+          </thead>
+        </table>
         {% endif %}
       </div>
       {% if recordsF %}
@@ -79,20 +167,18 @@
 
             {% for acc in recordsF %}
             <tr>
-              <td>{{acc.nameF}}</td>
-              <td>{{acc.priceF}}</td>
+              <td>{{acc.0}}</td>
+              <td>{{acc.1}}</td>
             </tr>
             {% endfor %}
           </tbody>
-        </table>
-        {% else %}
-        <p>No record found</p>
-        {% endif %}
+
+          {% else %} {% endif %}
       </div>
-
-
     </div>
   </div>
+
+</div>
   <script type="text/javascript" src="{% static "js/ws.js" %}"></script>
 </body>
 
