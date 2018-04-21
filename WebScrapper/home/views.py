@@ -138,8 +138,11 @@ def images(param):
     image = bs.select(".s-access-image")
     print(image[0])
     im= []
-    for i in range(3):
-        im.append(image[i].get('src'))
+    try:
+        for i in range(3):
+            im.append(image[i].get('src'))
+    except IndexError:
+        print("No Result")
     # print(len(prod))
     # print(prod,price)
     return(im)

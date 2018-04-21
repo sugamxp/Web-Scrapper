@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-{% load staticfiles %}
+<!DOCTYPE html> {% load staticfiles %}
 <html>
 
 <head>
@@ -7,45 +6,47 @@
   <title>WebScrapper</title>
   <link rel="stylesheet" href="{% static "css/mystyle.css" %}"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Gaegu|Indie+Flower|Orbitron|Economica:400,700" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Do+Hyeon|Gaegu|Indie+Flower|Orbitron|Economica:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <style>
-
     .jumbotron {
-      margin-top:10px;
-      background:#393E46;
+      margin-top: 10px;
+      background: #393E46;
     }
-    .jumbotron h1{
+
+    .jumbotron h1 {
       color: white;
       font-family: 'Do Hyeon', sans-serif;
     }
-    .jumbotron p{
+
+    .jumbotron p {
       color: white;
       font-family: 'Economica', sans-serif;
       font-weight: 700;
     }
+
     img {
-	     width: 100%;
+      width: 100%;
     }
+
     navbar {
-    -webkit-box-shadow: 0 8px 6px -6px #999;
-    -moz-box-shadow: 0 8px 6px -6px #999;
-    box-shadow: 0 8px 6px -6px #999;
+      -webkit-box-shadow: 0 8px 6px -6px #999;
+      -moz-box-shadow: 0 8px 6px -6px #999;
+      box-shadow: 0 8px 6px -6px #999;
     }
-    .all{
+
+    .all {
       text-align: center;
     }
-
-
   </style>
-  </head>
+</head>
 
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">
-    Web Scrapper
+    Web Scraper
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
    <span class="navbar-toggler-icon"></span>
@@ -66,49 +67,49 @@
         </li>
       </ul>
     </div>
-      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="https://github.com/sugamxp/Web-Scrapper"><i class="fa fa-github" aria-hidden="true" style="font-size:29px;"></i></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
-            </li>
-        </ul>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/sugamxp/Web-Scrapper"><i class="fa fa-github" aria-hidden="true" style="font-size:29px;"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'aboutus' %}">About Us</a>
+        </li>
+      </ul>
     </div>
 
   </nav>
 
-    <div class="jumbotron  text-dark">
-      <h1 class="display-4"><i class="fa fa-money" aria-hidden="true"style="font-size:80px;"></i>  Get The Best Deal!!!</h1>
-      <p class="lead">Simply search for the product you need, and get realtime comparison of prices of products from Amazon and Flipkart.
-      </p>
+  <div class="jumbotron  text-dark">
+    <h1 class="display-4"><i class="fa fa-money" aria-hidden="true"style="font-size:80px;"></i>  Get The Best Deal!!!</h1>
+    <p class="lead">Simply search for the product you need, and get realtime comparison of prices of products from Amazon and Flipkart.
+    </p>
 
-      <form method="POST">
-        {{forms.as_p}} {% csrf_token %}
-        <input type="submit" class="btn btn-info btn-lg" value="Scrap">
-      </form>
+    <form method="POST">
+      {{forms.as_p}} {% csrf_token %}
+      <input type="submit" class="btn btn-info btn-lg" value="Scrap">
+    </form>
 
 
-    </div>
-    {% if imgA %}
-    <div class="container">
-      <div class="row">
-        <div class="col-sm">
-          <div class="thumbnail">
-            <img src="{{imgA.0}}" class="img-thumbnail">
-          </div>
+  </div>
+  {% if imgA %}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <div class="thumbnail">
+          <img src="{{imgA.0}}" class="img-thumbnail">
         </div>
-        <div class="col-sm">
-          <div class="thumbnail">
-            <img src="{{imgA.1}}" class="img-thumbnail">
-          </div>
+      </div>
+      <div class="col-sm">
+        <div class="thumbnail">
+          <img src="{{imgA.1}}" class="img-thumbnail">
         </div>
-        <div class="col-sm">
-          <div class="thumbnail">
-            <img src="{{imgA.2}}" class="img-thumbnail">
-          </div>
+      </div>
+      <div class="col-sm">
+        <div class="thumbnail">
+          <img src="{{imgA.2}}" class="img-thumbnail">
         </div>
+      </div>
 
     </div>
   </div>
@@ -178,11 +179,8 @@
     </div>
   </div>
 
-</div>
+  </div>
   <script type="text/javascript" src="{% static "js/ws.js" %}"></script>
 </body>
 
 </html>
-
-<!-- <h2 data-attribute="Apple iPhone 6 (Space Grey, 32GB)" data-max-rows="0" class="a-size-medium s-inline  s-access-title  a-text-normal">Apple iPhone 6 (Space Grey, 32GB)</h2> -->
-<!-- <div class="_3wU53n">Mi LED Smart TV 4 138.8 cm (55)</div> -->
